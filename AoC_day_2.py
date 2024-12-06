@@ -96,20 +96,15 @@ def safeIfRemoved(number_list):
         -------------------- (bool) if list is now safe
     """
 
-    for i in range(len(number_list)):
-        if i == 0:
-            if not isSafe(number_list[1:]):
-                return False
-            
-        elif i == len(num_list):
-            if not isSafe(number_list[:i]):
-                return False
-        
-        else:
-            if not isSafe( [ number_list[0:i] + number_list[i+1:] ]):
-                return False
-            
-    return True
+    for number in number_list:
+        new_list = number_list
+        print(new_list)
+        new_list.remove(number)
+        print(new_list)
+        new_list = number_list
+        if isSafe(new_list):
+            return True
+    return False
 
 
 def ifRemovedCount(number_lists):
@@ -157,5 +152,6 @@ def getAnswer2():
     Returns:
         ------------ (int) count of number lists that were made safe
     """
-
-    return ifRemovedCount(data_list)
+    previous = getAnswer1()
+    total = previous + ifRemovedCount(data_list)
+    return total
